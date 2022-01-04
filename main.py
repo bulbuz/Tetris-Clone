@@ -11,7 +11,7 @@ class Game(object):
         pygame.display.set_caption(TITLE)
 
 
-        self.game_display = pygame.Surface((640, 1280))
+        self.game_display = pygame.Surface((GAME_SURFACE_WIDTH, GAME_SURFACE_HEIGHT))
         self.run = True
 
     def main(self):
@@ -33,9 +33,17 @@ class Game(object):
         pass
 
     def draw(self):
-        self.screen.fill((255, 255, 255))
+        self.screen.fill(BLACK)
+    
+        self.game_display.fill(BLACK)
+        # Draws the tetris grid
+        for i in range(GAME_DISPLAY_WIDTH):
+            for j in range(GAME_DISPLAY_HEIGHT):
+                rect = pygame.Rect(i*TILE_SIZE, j*TILE_SIZE, TILE_SIZE, TILE_SIZE)
+                pygame.draw.rect(self.game_display, WHITE, rect, 1)
 
-        self.screen.blit(pygame.transform.scale(self.game_display, (320, 640)), (0, 0))
+        # Blits the tetris game surface onto the actual surface
+        self.screen.blit(pygame.transform.scale(self.game_display, (GAME_SURFACE_WIDTH, GAME_SURFACE_HEIGHT)), ((SCREEN_WIDTH/2)-GAME_SURFACE_WIDTH//2, 10))
 
 if __name__ == "__main__":
     g = Game()
