@@ -1,6 +1,7 @@
 import pygame
 import sys
 import random
+import time
 
 from figure import Figure
 from config import *
@@ -16,23 +17,21 @@ class Game(object):
         self.run = True
         self.game_grid = [[0] * 10 for i in range(20)]
 
-        self.block_types = ['L', 'S', 'I', 'J', 'Z', 'O', 'T']
-        self.score = 0
-        self.state = None
+        self.block_types = ['L', 'S', 'I', 'J', 'Z', 'T']
 
         self.delay = 750
-        self.update_event = pygame.USER_EVENT + 0
-        self.ok = 0
+        self.update_event = pygame.USEREVENT + 0
+        self.ok = 1
 
+        self.current_fig = Figure(self, self.block_types[0], 0, 0)
 
     def main(self):
+        pygame.time.set_timer(self.update_event, self.delay)
         while self.run:
-            pygame.time.set_timer(self.update_event, self.delay)
             self.events()
-            
             if self.ok:
                 self.update()
-
+                self.ok = 0
             self.draw()
 
             self.clock.tick(FPS)
@@ -48,7 +47,7 @@ class Game(object):
                 self.ok = 1
 
     def update(self):
-        self.current_block = Figure(random.choice(self.block_types), 0, 0)
+        self.current_fig = Figure(self, random.choice(self.block_types), 4, 0)
 
     def draw(self):
         self.screen.fill(BLACK)
@@ -56,14 +55,13 @@ class Game(object):
         self.game_display.fill(BLACK)
 
         # Draws the tetris grid
-        color = None
-        for i, row in enumerate(self.game_grid):
-            for j, item in enumerate(row):
-                if item == 0:
-                    color = WHITE
-
+        for i in range(20):
+            for j in range(10):
                 rect = pygame.Rect(j*TILE_SIZE, i*TILE_SIZE, TILE_SIZE, TILE_SIZE)
-                pygame.draw.rect(self.game_display, color, rect, 1)
+                pygame.draw.rect(self.game_display, WHITE, rect, 1)
+
+        self.current_fig.draw()
+
         # Blits the tetris game surface onto the actual surface
         self.screen.blit(pygame.transform.scale(self.game_display, (GAME_SURFACE_WIDTH, GAME_SURFACE_HEIGHT)), ((SCREEN_WIDTH/2)-GAME_SURFACE_WIDTH//2, 10))
 
