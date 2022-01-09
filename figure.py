@@ -136,16 +136,15 @@ class Figure(object):
             }
         }
         self.figure = self.figs.get(figure_type)
-        self.rotation = rotation
         self.game = game
         self.x = x
         self.y = y
 
     def draw(self):
-        print(self.figure['rotations'][self.rotation])
-        for i in range(len(self.figure['rotations'][self.rotation])):
-            for j in range(len(self.figure['rotations'][self.rotation][i])):
-                if self.figure['rotations'][self.rotation][i][j] == 1:
-                    rect = [(self.x+j)*TILE_SIZE, (self.y+i)*TILE_SIZE, TILE_SIZE, TILE_SIZE]
+        for i in range(len(self.figure['rotations'][self.game.rotation])):
+            for j in range(len(self.figure['rotations'][self.game.rotation][i])):
+                if self.figure['rotations'][self.game.rotation][i][j] == 1:
+                    rect = [(self.x+j)*TILE_SIZE, (self.y+i-2)*TILE_SIZE, TILE_SIZE, TILE_SIZE]
                     pygame.draw.rect(self.game.game_display, self.figure['color'], rect)
+                    pygame.draw.rect(self.game.game_display, WHITE, rect, 1)
 
