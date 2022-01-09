@@ -27,10 +27,10 @@ class Game(object):
 
     def main(self):
         while self.run:
-            pygame.time.set_timer(self.user_event, self.delay)
+            pygame.time.set_timer(self.update_event, self.delay)
             self.events()
             
-            if ok:
+            if self.ok:
                 self.update()
 
             self.draw()
@@ -48,7 +48,7 @@ class Game(object):
                 self.ok = 1
 
     def update(self):
-        self.current_block = Figure(random.choice(self.block_types))
+        self.current_block = Figure(random.choice(self.block_types), 0, 0)
 
     def draw(self):
         self.screen.fill(BLACK)

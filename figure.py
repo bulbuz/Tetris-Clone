@@ -4,10 +4,10 @@ from config import *
 
 class Figure(object):
 
-    self.figures = {
+    figures = {
         'L': {
-            color: ORANGE,
-            rotations: [
+            'color': ORANGE,
+            'rotations': [[
                 [0, 0, 0],
                 [0, 0, 1],
                 [1, 1, 1],
@@ -26,12 +26,11 @@ class Figure(object):
                 [1, 0, 0],
                 [1, 0, 0],
                 [1, 1, 0],
-            ]
-
+            ]]
         },
         'S': {
-            color: GREEN,
-            rotations: [
+            'color': GREEN,
+            'rotations': [
             [
                 [0, 0, 0],
                 [0, 1, 1],
@@ -41,12 +40,12 @@ class Figure(object):
                 [1, 0, 0],
                 [1, 1, 0],
                 [0, 1, 0],
-            ]
+            ]]
 
         },
         'I': {
-            color: TURQUOISE,
-            rotations: [
+            'color': TURQUOISE,
+            'rotations': [
             [
                 [0, 0, 0, 0],
                 [0, 0, 0, 0],
@@ -70,11 +69,11 @@ class Figure(object):
                 [0, 0, 1, 0],
                 [0, 0, 1, 0],
                 [0, 0, 1, 0],
-            ]
+            ]]
         },
         'J': {
-            color: GREEN,
-            rotations : [
+            'color': GREEN,
+            'rotations' : [
             [
                 [0, 0, 0],
                 [1, 0, 0],
@@ -94,12 +93,12 @@ class Figure(object):
                 [0, 0, 1],
                 [0, 0, 1],
                 [0, 1, 1]
-            ]
+            ]]
 
         },
         'Z': {
-            color: RED,
-            rotations: [
+            'color': RED,
+            'rotations': [
             [
                 [0, 0, 0],
                 [1, 1, 0],
@@ -109,11 +108,11 @@ class Figure(object):
                 [0, 1, 0],
                 [1, 1, 0],
                 [1, 0, 0]
-            ]
+            ]]
         }, 
         'T': {
-            color: GREEN,
-            rotations: [
+            'color': GREEN,
+            'rotations': [
             [
                 [0, 0, 0],
                 [0, 1, 0],
@@ -133,12 +132,14 @@ class Figure(object):
                 [0, 0, 1],
                 [0, 1, 1],
                 [0, 0, 1]
-            ]
-
-        },
+            ]]
+        }
     }
 
 
     def __init__(self, figure_type, x, y):
-        self.figure = self.figures.get(figure_type)
+        self.figure = figures.get(figure_type)
+
+    def draw(self):
+        pass
 
