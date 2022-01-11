@@ -33,6 +33,8 @@ class Game(object):
         self.vel_x = 0
         self.vel_y = 0
 
+        self.rotate = False
+
     def main(self):
         pygame.time.set_timer(self.update_event, self.delay)
         while self.run:
@@ -82,6 +84,12 @@ class Game(object):
 
                 if event.key == pygame.K_DOWN:
                     self.move_down = True
+
+                if event.key == pygame.K_UP:
+                    if self.rotation == 3:
+                        self.rotation = 0
+                    else:
+                        self.rotation += 1
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
