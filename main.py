@@ -40,13 +40,13 @@ class Game(object):
         while self.run:
             self.events()
     
-            if self.move_right and self.current_fig.x < 10-len(self.current_fig.figure['rotations'][self.rotation]):
+            if self.move_right and not self.move_left and  self.current_fig.x < 10-len(self.current_fig.figure['rotations'][self.rotation]):
                 self.vel_x += 0.12
                 self.current_fig.x += round(self.vel_x)
                 if round(self.vel_x):
                     self.vel_x = 0
 
-            if self.move_left and self.current_fig.x > 0:
+            if self.move_left and not self.move_right and self.current_fig.x > 0:
                 self.vel_x += 0.12
                 self.current_fig.x -= round(self.vel_x)
                 if round(self.vel_x):
