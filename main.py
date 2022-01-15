@@ -91,6 +91,11 @@ class Game(object):
                     else:
                         self.rotation += 1
 
+                if event.key == pygame.K_SPACE:
+                    self.state = 'update'
+                    self.ok = 1
+                    self.rotation = 0
+
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
                     self.move_left = False
@@ -122,7 +127,8 @@ class Game(object):
         self.current_fig.draw()
 
         # Blits the tetris game surface onto the actual surface
-        self.screen.blit(pygame.transform.scale(self.game_display, (GAME_SURFACE_WIDTH, GAME_SURFACE_HEIGHT)), ((SCREEN_WIDTH/2)-GAME_SURFACE_WIDTH//2, 10))
+        self.screen.blit(pygame.transform.scale(self.game_display, 
+            (GAME_SURFACE_WIDTH, GAME_SURFACE_HEIGHT)), ((SCREEN_WIDTH/2)-GAME_SURFACE_WIDTH//2, 10))
 
 if __name__ == "__main__":
     g = Game()
